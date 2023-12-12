@@ -1,10 +1,10 @@
-<div>
+<!-- <div>
   <nav>
       <table>
         <tr>
           <td  *ngFor="let action of actions">
-              <button 
-                (click)="setActionCourante(action)" 
+              <button
+                (click)="setActionCourante(action)"
                 [style.backgroundColor] = "action==actionCourante?'yellow':'red'"
                 routerLink="{{action.route}}">
                 {{action.titre}}
@@ -16,4 +16,13 @@
 </div>
 <router-outlet>
 
-</router-outlet> 
+</router-outlet>  -->
+<div style="text-align:center">
+
+</div>
+
+ <app-facture-form></app-facture-form>
+ <app-facture-list></app-facture-list>
+ <!-- <app-produits></app-produits> -->
+ <app-details-facture></app-details-facture>
+<router-outlet></router-outlet>

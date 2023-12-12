@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Invoice App</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    /* Add custom styles for the card */
+    .card {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+      transform-origin: center bottom;
+      height: 100%; /* Agrandir la carte en hauteur */
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      transform: scale(1.05);
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+    }
+
+    .delete-button {
+      transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+      border-radius: 20px; /* Bord arrondi */
+      padding: 15px 30px; /* Ajuster la taille du bouton */
+    }
+
+    .delete-button:hover {
+      background-color: #007bff; /* Nouvelle couleur du bouton */
+      color: #fff; /* Couleur du texte du bouton */
+    }
+
+    /* Ajouter un style pour le header */
+    .card-header {
+      background-color: #0056b3; /* Couleur du header (plus foncée) */
+      color: #fff; /* Couleur du texte du header */
+      padding: 15px; /* Espacement interne du header (augmenté) */
+      text-align: center; /* Alignement du texte au centre */
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div *ngFor="let facture of factures" class="col-md-4 mb-4">
+        <div class="card">
+          <!-- Ajouter un header avec le mot "Facture" -->
+          <div class="card-header">
+            Facture
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">ID {{ facture.id }}</h5>
+            <p class="card-text">Date: {{ facture.dateF | date }}</p>
+            <p class="card-text">Client: {{ facture.client?.nom }} {{ facture.client?.prenom }}</p>
+            <!-- Add more card content for other invoice details if needed -->
+          </div>
+          <div class="card-footer text-center">
+            <button *ngIf="facture.id !== undefined" (click)="deleteFacture(facture.id)" class="btn btn-primary delete-button">Supprimer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+<!--
+<table>
+  <tr *ngFor="let facture of factures">
+    <td>{{ facture.id }}</td>
+    <td>{{ facture.dateF | date }}</td>
+    <td>{{ facture.client?.nom }} {{ facture.client?.prenom }}</td>
+
+    <td>
+      <button *ngIf="facture.id !== undefined" (click)="deleteFacture(facture.id)">Supprimer</button>
+    </td>
+  </tr>
+</table> -->

@@ -1,0 +1,43 @@
+<!-- details-facture.component.html -->
+<div class="container mt-4">
+  <div class="form-group">
+    <label for="factureSelect">Sélectionnez une facture :</label>
+    <select id="factureSelect" class="form-control" [(ngModel)]="selectedFactureId">
+      <option *ngFor="let facture of factures" [value]="facture.id">{{ facture.id }}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="produitSelect">Sélectionnez un produit :</label>
+    <select id="produitSelect" class="form-control" [(ngModel)]="selectedProduitId">
+      <option *ngFor="let produit of produits" [value]="produit.id">{{ produit.designation }} - {{ produit.prix }}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="quantiteInput">Quantité :</label>
+    <input type="number" id="quantiteInput" class="form-control" [(ngModel)]="quantite" name="quantite" required />
+  </div>
+
+  <button class="btn btn-primary" (click)="onSubmit()">Ajouter Détails Facture</button>
+
+  <!-- Tableau Bootstrap pour afficher les détails de facture -->
+  <table class="table mt-4" *ngIf="detailsFactures.length > 0">
+    <thead>
+      <tr>
+        <th>ID Facture</th>
+        <th>Quantité</th>
+        <th>Produit</th>
+        <!-- Ajoutez d'autres en-têtes si nécessaire -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let detailsFacture of detailsFactures">
+        <td>{{ detailsFacture.facture?.id }}</td>
+        <td>{{ detailsFacture.quantite }}</td>
+        <td>{{ detailsFacture.produit?.designation }} - {{ detailsFacture.produit?.prix }}</td>
+        <!-- Ajoutez d'autres cellules si nécessaire -->
+      </tr>
+    </tbody>
+  </table>
+</div>

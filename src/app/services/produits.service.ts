@@ -1,16 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Produit } from '../model/produit';
-import { Observable } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProduitsService {
-  
+
   // Url du service web de gestion de produits
   // commune pour toutes les méthodes
-  urlHote="http://localhost:8080/produits/";
+  urlHote="http://localhost:8082/produits/";
 
   constructor(private http :HttpClient)
   {
@@ -20,13 +20,13 @@ export class ProduitsService {
   getProduits() :Observable<Array<Produit>>
   {
     return  this.http.get<Array<Produit>> (this.urlHote,{
-      headers: {'Access-Control-Allow-Origin': '*','Accept':'application/json'}
+      headers: {'Access-Control-Allow-Origin': '*','Accept':'application/json','withCredentials': 'true'}
    });
   }
 
   deleteProduit(idP: number|undefined)
   {
-    return this.http.get (this.urlHote+"delete/"+idP);
+    return this.http.delete (this.urlHote+"delete/"+idP);
   }
 
   addProduit(nouveau: Produit) {
@@ -36,5 +36,13 @@ export class ProduitsService {
   updateProduit(idP: number | undefined, nouveau: Produit) {
     return this.http.put(this.urlHote,nouveau);
   }
+//   getAllProduits(): Observable<Produit[]> {
+//     return this.http.get<Produit[]>('${this.urlHote}allproduits');
+// }
+// getAllProduits(): Observable<Produit[]> {
+//   return this.http.get<Produit[]>(this.urlHote+"allproduits");
+// }
+
+
 
 }

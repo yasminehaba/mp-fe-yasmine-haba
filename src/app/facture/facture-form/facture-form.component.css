@@ -1,0 +1,11 @@
+.my-form {
+    max-width: 300px;
+  }
+
+  .label-bold {
+    font-weight: bold;
+  }
+
+  .rounded-btn {
+    border-radius: 5px;
+  }
